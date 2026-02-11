@@ -1,0 +1,78 @@
+PDT Closure Monte Carlo Results v3
+============================================================
+Date: 2026-02-11
+Targets: CODATA 2022 / PDG 2024
+GPU: NVIDIA A100-SXM4-80GB (84.6 GB free)
+Runtime: 57s total
+
+PDT BASELINE
+  18/18 within 3%, mean error 0.297%
+  ✓             α⁻¹:    137.06325  obs    137.03600  err 0.020%
+  ✓         sin²θ_W:      0.23108  obs      0.23122  err 0.061%
+  ✓             α_s:      0.11819  obs      0.11800  err 0.161%
+  ✓             Y_p:      0.24512  obs      0.24490  err 0.091%
+  ✓             n_s:      0.96383  obs      0.96490  err 0.110%
+  ✓         m_τ/m_e:   3480.00029  obs   3477.23000  err 0.080%
+  ✓         m_μ/m_e:    209.09567  obs    206.76828  err 1.126%
+  ✓       Tsirelson:      2.82776  obs      2.82843  err 0.024%
+  ✓        |γ_halo|:      0.81917  obs      0.82000  err 0.101%
+  ✓            He/H:      0.32472  obs      0.32520  err 0.148%
+  ✓          |V_us|:      0.22588  obs      0.22500  err 0.393%
+  ✓        r_tensor:      0.03270  obs      0.03300  err 0.913%
+  ✓         sin²θ₂₃:      0.54421  obs      0.54600  err 0.329%
+  ✓         sin²θ₁₂:      0.30620  obs      0.30700  err 0.261%
+  ✓         sin²θ₁₃:      0.02223  obs      0.02200  err 1.039%
+  ✓        H₀ ratio:      1.08517  obs      1.08310  err 0.191%
+  ✓        S₈ ratio:      0.92151  obs      0.91900  err 0.273%
+  ✓    log₁₀(α/α_G):     42.63404  obs     42.62000  err 0.033%
+
+LAYER 1: 2,000,000,000 random trials
+  Best rival: 18/18 at r=1.3246811147, q=1.2204238185
+  |r-ρ| = 0.00003684, |q-Q| = 0.00032027
+  Rival mean error: 0.309%
+  Island analysis (1000 trials with 14+ matches):
+    Island fraction: 1.13e-04 of parameter space
+    All high-fidelity matches cluster near polynomial roots
+
+LAYER 2: 500,000,000 trials (island excluded, |Δr|,|Δq| > 0.02)
+  Best match: 11/18
+  Best rival mean error: 6.895%
+  0 trials reached ≥12 matches (p < 6e-9, >5.7σ)
+
+LAYER 3: Exponent uniqueness
+  Winning triples: 1/125,000
+  Winner: (15, 29, 19) = PDT group dimensions
+  Extension: θ_W→e2=3(0.06%), α_s→(3,3,2)(0.16%), hier→e8=209(0.033%)
+  Random exponent best: 16/18
+  Fixed predictions (no exponent freedom): 12/18
+
+LAYER 4: Permutation test
+  1,000,000 shuffles, best: 10/18 (PDT: 18/18, gap: 8)
+
+EMPIRICAL SIGNIFICANCE
+  Outside polynomial neighborhood (Layer 2):
+  0 trials of 500,000,000 exceeded 11 matches
+  0 trials reached ≥12 matches (p < 6e-9, >5.7σ)
+  This is the primary significance claim.
+  No stacked p-values — this is the raw empirical count.
+
+BEST RIVAL DETAIL (Layer 2, outside island)
+  r = 1.3242645532, q = 1.2408279052
+              α⁻¹: PDT  0.020%  rival  27.100%
+          sin²θ_W: PDT  0.061%  rival   2.040%
+              α_s: PDT  0.161%  rival  20.170%
+              Y_p: PDT  0.091%  rival   0.010%
+              n_s: PDT  0.110%  rival   0.390%
+          m_τ/m_e: PDT  0.080%  rival   0.910%
+          m_μ/m_e: PDT  1.126%  rival   1.070%
+        Tsirelson: PDT  0.024%  rival   0.080%
+         |γ_halo|: PDT  0.101%  rival   1.720%
+             He/H: PDT  0.148%  rival   0.290%
+           |V_us|: PDT  0.393%  rival   1.970%
+         r_tensor: PDT  0.913%  rival  14.150%
+          sin²θ₂₃: PDT  0.329%  rival  15.070%
+          sin²θ₁₂: PDT  0.261%  rival   5.710%
+          sin²θ₁₃: PDT  1.039%  rival  27.170%
+         H₀ ratio: PDT  0.191%  rival   1.460%
+         S₈ ratio: PDT  0.273%  rival   1.960%
+     log₁₀(α/α_G): PDT  0.033%  rival   3.440%

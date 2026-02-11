@@ -1,0 +1,124 @@
+╔══════════════════════════════════════════════════════════╗
+║  GPU MODE: NVIDIA A100-SXM4-80GB                         ║
+║  VRAM: 85.1 GB total, 84.6 GB free                          ║
+╚══════════════════════════════════════════════════════════╝
+
+────────────────────────────────────────────────────────────
+  PDT BASELINE: 18/18 within 3.0%
+  Mean error: 0.297%
+  Max error:  1.126% (m_μ/m_e)
+────────────────────────────────────────────────────────────
+
+  Individual predictions:
+    ✓             α⁻¹: predicted    137.06325  observed    137.03600  error 0.020%
+    ✓         sin²θ_W: predicted      0.23108  observed      0.23122  error 0.061%
+    ✓             α_s: predicted      0.11819  observed      0.11800  error 0.161%
+    ✓             Y_p: predicted      0.24512  observed      0.24490  error 0.091%
+    ✓             n_s: predicted      0.96383  observed      0.96490  error 0.110%
+    ✓         m_τ/m_e: predicted   3480.00029  observed   3477.23000  error 0.080%
+    ✓         m_μ/m_e: predicted    209.09567  observed    206.76828  error 1.126%
+    ✓       Tsirelson: predicted      2.82776  observed      2.82843  error 0.024%
+    ✓        |γ_halo|: predicted      0.81917  observed      0.82000  error 0.101%
+    ✓            He/H: predicted      0.32472  observed      0.32520  error 0.148%
+    ✓          |V_us|: predicted      0.22588  observed      0.22500  error 0.393%
+    ✓        r_tensor: predicted      0.03270  observed      0.03300  error 0.913%
+    ✓         sin²θ₂₃: predicted      0.54421  observed      0.54600  error 0.329%
+    ✓         sin²θ₁₂: predicted      0.30620  observed      0.30700  error 0.261%
+    ✓         sin²θ₁₃: predicted      0.02223  observed      0.02200  error 1.039%
+    ✓        H₀ ratio: predicted      1.08517  observed      1.08310  error 0.191%
+    ✓        S₈ ratio: predicted      0.92151  observed      0.91900  error 0.273%
+    ✓    log₁₀(α/α_G): predicted     42.63404  observed     42.62000  error 0.033%
+
+════════════════════════════════════════════════════════════
+  LAYER 1: Random (r,q), PDT formulas: 2,000,000,000 trials
+════════════════════════════════════════════════════════════
+  Completed in 113.8s (17.6M/s)
+
+  Match distribution:
+     0:  1,180,978,195  (5.90e-01)
+     1:    517,416,301  (2.59e-01)
+     2:    226,512,236  (1.13e-01)
+     3:     53,538,962  (2.68e-02)
+     4:     11,976,069  (5.99e-03)
+     5:      5,655,442  (2.83e-03)
+     6:      1,940,343  (9.70e-04)
+     7:        567,483  (2.84e-04)
+     8:        337,716  (1.69e-04)
+     9:        268,623  (1.34e-04)
+    10:        345,167  (1.73e-04)
+    11:        195,931  (9.80e-05)
+    12:         90,234  (4.51e-05)
+    13:         69,927  (3.50e-05)
+    14:         40,396  (2.02e-05)
+    15:         40,133  (2.01e-05)
+    16:         12,193  (6.10e-06)
+    17:          5,374  (2.69e-06)
+    18:          9,275  (4.64e-06)
+
+  Threshold summary:
+    ≥ 8 matches:    1,414,969  (7.07e-04)
+    ≥10 matches:      808,630  (4.04e-04)
+    ≥12 matches:      267,532  (1.34e-04)
+    ≥14 matches:      107,371  (5.37e-05)
+    ≥16 matches:       26,842  (1.34e-05)
+    ≥18 matches:        9,275  (4.64e-06)
+
+  Best trial: 18/18 at r=1.3246811147, q=1.2204238185
+    |r-ρ| = 0.00003684, |q-Q| = 0.00032027, Mean error: 0.309%
+
+  Island analysis (1000 trials with 14+ matches):
+    Island fraction: 1.13e-04
+
+════════════════════════════════════════════════════════════
+  LAYER 2: Exclude polynomial neighborhood: 500,000,000 trials
+  EXCLUDING |r-ρ|<0.02 AND |q-Q|<0.02
+════════════════════════════════════════════════════════════
+  Completed in 28.9s (17.3M/s)
+
+  Threshold summary:
+    ≥ 8 matches:      105,398  (2.11e-04)
+    ≥10 matches:       27,583  (5.52e-05)
+    ≥12 matches:            0  (p < 6.00e-09, >5.7σ)
+
+  Best trial: 11/18 at r=1.3242645532, q=1.2408279052
+    Mean error: 6.895%
+
+  Best rival — prediction-by-prediction comparison:
+         Observable           PDT         Rival        Target   PDT err  Rival err
+                α⁻¹     137.06325     174.17862     137.03600  ✓  0.02%  ✗  27.10%
+            sin²θ_W       0.23108       0.23593       0.23122  ✓  0.06%  ✓   2.04%
+                α_s       0.11819       0.14180       0.11800  ✓  0.16%  ✗  20.17%
+                Y_p       0.24512       0.24486       0.24490  ✓  0.09%  ✓   0.01%
+                n_s       0.96383       0.96118       0.96490  ✓  0.11%  ✓   0.39%
+            m_τ/m_e    3480.00029    3445.62395    3477.23000  ✓  0.08%  ✓   0.91%
+            m_μ/m_e     209.09567     207.74010     206.76828  ✓  1.13%  ✓   0.47%
+          Tsirelson       2.82776       2.83074       2.82843  ✓  0.02%  ✓   0.08%
+           |γ_halo|       0.81917       0.80591       0.82000  ✓  0.10%  ✓   1.72%
+               He/H       0.32472       0.32426       0.32520  ✓  0.15%  ✓   0.29%
+             |V_us|       0.22588       0.22944       0.22500  ✓  0.39%  ✓   1.97%
+           r_tensor       0.03270       0.03767       0.03300  ✓  0.91%  ✗  14.15%
+            sin²θ₂₃       0.54421       0.62826       0.54600  ✓  0.33%  ✗  15.07%
+            sin²θ₁₂       0.30620       0.28946       0.30700  ✓  0.26%  ✗   5.71%
+            sin²θ₁₃       0.02223       0.02798       0.02200  ✓  1.04%  ✗  27.17%
+           H₀ ratio       1.08517       1.06724       1.08310  ✓  0.19%  ✓   1.46%
+           S₈ ratio       0.92151       0.93699       0.91900  ✓  0.27%  ✓   1.96%
+       log₁₀(α/α_G)      42.63404      44.08414      42.62000  ✓  0.03%  ✗   3.44%
+    Summary: PDT 18/18, rival 11/18
+    PDT mean error: 0.297%, rival mean error: 6.895%
+
+════════════════════════════════════════════════════════════
+  LAYER 3: Random exponents with fixed (ρ, Q)
+════════════════════════════════════════════════════════════
+  Phase 1: 1 / 125,000 triples: e1=15, e6=29, e7=19 ← PDT
+  Phase 2: extends to θ_W(3), α_s(3,3,2), hierarchy(209) ← PDT
+  Phase 3 (1M random sets): Best 16/18, PDT 18/18
+  12/18 predictions are exact algebraic (no exponents to randomize)
+  Layer 3 completed in 40.8s
+
+════════════════════════════════════════════════════════════
+  LAYER 4: Permutation test: 1,000,000 random shuffles
+════════════════════════════════════════════════════════════
+  Best shuffled: 10/18, PDT: 18/18, Gap: 8
+  Completed in 15.9s
+
+Total runtime: 57s
