@@ -1,6 +1,6 @@
 # PDT Closure Monte Carlo — Statistical Validation
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/classicalanomaly/pdt-closure-mc/blob/main/pdt_statistical_tests.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/stalex444/pdt-closure-mc/blob/main/notebooks/pdt_statistical_tests.ipynb)
 
 **Four-layer GPU-accelerated Monte Carlo test of Pisot Dimensional Theory**
 
@@ -25,10 +25,8 @@ The code tests whether the observed agreement between PDT's predictions and 18 e
 ## Quick Start
 
 ### Google Colab (recommended)
-```
 !pip install cupy-cuda12x
 %run pdt_closure_mc_gpu_v3.py
-```
 Runtime: ~3 minutes on A100, ~10 minutes on T4.
 
 ### Local (CPU fallback)
@@ -45,7 +43,7 @@ Set `QUICK_MODE = True` at line 36 of the script for a ~2 minute verification ru
 
 | File | Description |
 |------|-------------|
-| `pdt_statistical_tests.ipynb` | Colab notebook (click badge above to run) |
+| `notebooks/pdt_statistical_tests.ipynb` | Colab notebook (click badge above to run) |
 | `pdt_closure_mc_gpu_v3.py` | Main validation script (GPU/CPU) |
 | `mc_results_summary_v3.txt` | Full output from 2.5B-trial production run |
 | `colab_output.txt` | Complete Colab console output |
@@ -107,11 +105,8 @@ The script uses fixed random seeds (42, 137, 99, 2026) for full reproducibility.
 ## Citation
 
 If you use this code, please cite:
-
-```
-S. Alexander, "There Is No Hierarchy," 
+S. Alexander, "There Is No Hierarchy,"
 Gravity Research Foundation Essay Competition 2026.
-```
 
 ## License
 
