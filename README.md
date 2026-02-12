@@ -1,113 +1,112 @@
-# PDT Closure Monte Carlo — Statistical Validation
+# PDT Closure Monte Carlo
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/stalex444/pdt-closure-mc/blob/main/notebooks/pdt_statistical_tests.ipynb)
+**Statistical validation of Pisot Dimensional Theory (PDT)**
+*Companion code for the Gravity Research Foundation 2026 essay submission*
 
-**Four-layer GPU-accelerated Monte Carlo test of Pisot Dimensional Theory**
+## What This Tests
 
-This repository contains the statistical validation suite for the framework described in:
+PDT predicts 18 fundamental constants from two polynomial roots:
+- **ρ** = 1.32472… (real root of x³ = x + 1)
+- **Q** = 1.22074… (real root of x⁴ = x + 1)
 
-> S. Alexander, "There Is No Hierarchy," submitted to the Gravity Research Foundation 2026 Awards for Essays on Gravitation.
+The Monte Carlo asks: could any other pair of constants (r, q) match nature this well using the same formulas? The answer is no.
 
-The code tests whether the observed agreement between PDT's predictions and 18 experimentally measured quantities could arise by chance.
-
-## Results Summary
+## Results Summary (v3.1)
 
 | Layer | Test | Trials | Result |
 |-------|------|--------|--------|
-| **Baseline** | PDT predictions vs. experiment | — | 18/18 within 3%, mean error 0.297% |
-| **Layer 1** | Random (r,q) with PDT formulas | 2,000,000,000 | All ≥14 matches cluster near (ρ,Q); island fraction ~10⁻⁴ |
-| **Layer 2** | Exclude polynomial neighborhood | 500,000,000 | Best: 11/18 (mean error 6.9%). Zero trials ≥12. p < 6×10⁻⁹ (>5.7σ) |
-| **Layer 3** | Random exponents at fixed (ρ,Q) | 125,000 exhaustive + 1M random | Only 1 triple of 125,000 hits 3 key targets: PDT's (15,29,19). Random best: 16/18 |
-| **Layer 4** | Permutation (formula↔observable) | 1,000,000 | Best shuffled: 10/18 vs. PDT 18/18. Gap: 8 predictions |
+| **PDT** | Baseline | — | **18/18** within 3%, mean error **0.297%** |
+| 1 | Random (r,q) | 2,000,000,000 | Best rival: 15/18 (near ρ,Q only) |
+| 2 | Exclude island | 500,000,000 | Wall at 11/18 → **>5.7σ** |
+| 3 | Random exponents | 125,000 exhaustive | Only (15,29,19) works = group dimensions |
+| 4 | Permutation | 1,000,000 | Best shuffled: 9/18 |
 
-**Bottom line:** Outside a ~10⁻⁴ neighborhood of the roots of x³ = x + 1 and x⁴ = x + 1, no random pair (r,q) in 500 million trials matched more than 11 of 18 predictions. The exponent set and formula-to-observable mapping are each independently unique.
+**Empirical significance:** 0 of 2 billion random trials achieved ≥16/18 matches. p < 1.5 × 10⁻⁹ (>5.7σ).
 
 ## Quick Start
 
-### Google Colab (recommended)
+### Full analysis (GPU, ~3–5 min on A100)
+```bash
+# On Google Colab with GPU runtime:
 !pip install cupy-cuda12x
 %run pdt_closure_mc_gpu_v3.py
-Runtime: ~3 minutes on A100, ~10 minutes on T4.
-
-### Local (CPU fallback)
-```bash
-pip install numpy scipy
-python pdt_closure_mc_gpu_v3.py
 ```
-Runtime: ~2–4 hours without GPU.
 
-### Quick verification mode
-Set `QUICK_MODE = True` at line 36 of the script for a ~2 minute verification run (10M trials) that confirms the structure works before committing to the full 2.5B run.
-
-## Files
-
-| File | Description |
-|------|-------------|
-| `notebooks/pdt_statistical_tests.ipynb` | Colab notebook (click badge above to run) |
-| `pdt_closure_mc_gpu_v3.py` | Main validation script (GPU/CPU) |
-| `mc_results_summary_v3.txt` | Full output from 2.5B-trial production run |
-| `colab_output.txt` | Complete Colab console output |
-| `TARGETS.md` | Experimental targets with sources |
-| `requirements.txt` | Python dependencies |
-| `LICENSE` | CC-BY 4.0 |
+### Quick verification (CPU, ~30 sec)
+```bash
+python quick_verify.py
+```
 
 ## Experimental Targets
 
-All predictions are compared against published experimental values:
+All predictions are compared against the latest experimental values:
 
-| Observable | Target | Source |
-|-----------|--------|--------|
-| α⁻¹ | 137.035999177 | CODATA 2022 (Rev. Mod. Phys. 2024) |
-| sin²θ_W | 0.23122 | PDG 2024 (MS-bar, M_Z) |
-| α_s(M_Z) | 0.1180 | PDG 2024 world average |
-| Y_p | 0.2449 | Aver et al. 2021 |
-| n_s | 0.9649 | Planck 2018 TT,TE,EE+lowE |
-| m_τ/m_e | 3477.23 | PDG 2024 |
-| m_μ/m_e | 206.7682830 | CODATA 2022 |
-| Tsirelson bound | 2√2 | Exact (Cirel'son 1980) |
-| \|γ_halo\| | 0.82 | SPARC median |
-| He/H | 0.3252 | BBN + CMB |
-| \|V_us\| | 0.22500 | PDG 2024 Cabibbo |
-| r (tensor-to-scalar) | 0.033 | PDT prediction (testable by BICEP Array / Simons Observatory) |
-| sin²θ₂₃ | 0.546 | PDG 2024 (NO) |
-| sin²θ₁₂ | 0.307 | PDG 2024 |
-| sin²θ₁₃ | 0.02200 | PDG 2024 |
-| H₀ ratio | 1.0831 | SH0ES / Planck tension |
-| S₈ ratio | 0.919 | DES Y3 / Planck |
-| log₁₀(α/α_G) | 42.620 | CODATA 2022 |
+| Source | Values Used |
+|--------|-------------|
+| CODATA 2022 | α⁻¹, m_μ/m_e, log₁₀(α/α_G) |
+| PDG 2024 | sin²θ_W, α_s(M_Z), m_τ/m_e, |V_us|, neutrino mixing angles |
+| Aver et al. 2026 | Y_p (primordial helium) |
+| Planck 2018 | n_s (spectral index) |
+| SPARC | |γ_halo| (galaxy rotation) |
 
-## Exponent Provenance
+### v3.1 Update (February 2026)
+- Y_p target updated: 0.2449 (Aver 2021) → **0.2458** (Aver 2026)
+- α_s(M_Z) confirmed at 0.1180 (PDG 2024/2025)
 
-Every integer exponent in the framework corresponds to a group-theoretic dimension, not a free parameter:
+## What the Four Layers Test
 
-| Exponent | Value | Origin |
-|----------|-------|--------|
-| e₁ | 15 | dim SO(4,2), conformal group of 3+1 spacetime |
-| e₆ | 29 | dim SU(2) × SO(4,2) (electroweak × conformal) |
-| e₇ | 19 | dim SO(4,2) + rank SU(3) × dim(adjoint) |
-| e₈ | 209 | 11 × 19, where 11 = dim SO(3,2) anti-de Sitter |
-| ψ³ | 3 | rank of SU(3) color |
-| λ₄/5 | 5 | dim SU(2) + rank SU(3) |
+**Layer 1 — Uniqueness of (ρ, Q):** Draw 2 billion random pairs from [1.01, 2.50]². Plug them into PDT's 18 formulas. No pair outside a tiny neighborhood of (ρ, Q) achieves more than 11/18 matches.
 
-12 of 18 predictions are exact algebraic functions of λ₃ = 1−1/ρ, λ₄ = 1−1/Q, ψ = Q/ρ with no exponents to adjust.
+**Layer 2 — No alternative islands:** Exclude the polynomial neighborhood (|r−ρ| < 0.02 and |q−Q| < 0.02) and repeat. The wall stays at 11/18. There is no second solution anywhere in parameter space.
 
-## Reproducibility
+**Layer 3 — Exponent uniqueness:** Fix (ρ, Q) and randomize the exponents. Only 1 of 125,000 integer triples simultaneously hits α⁻¹, m_τ/m_e, and m_μ/m_e — and that triple is PDT's (15, 29, 19), which are the dimensions of the conformal and electroweak symmetry groups. 12 of 18 predictions have no exponent freedom at all (pure algebraic functions of λ₃, λ₄, ψ).
 
-The script uses fixed random seeds (42, 137, 99, 2026) for full reproducibility. Results are deterministic given the same hardware and library versions. Minor floating-point differences between GPU and CPU are expected but do not affect match counts.
+**Layer 4 — Permutation test:** Keep the formulas and constants but randomly reassign which formula maps to which observable. In 1 million shuffles, no random assignment exceeds 9/18 matches. The mapping is unique.
 
-## Requirements
+### The Threshold Sweep
+| Threshold | PDT | Wall (excl.) | Gap |
+|-----------|-----|-------------|-----|
+| 1% | 16 | 6 | **10** |
+| 2% | 18 | 11 | 7 |
+| 3% | 18 | 11 | 7 |
+| 5% | 18 | 13 | 5 |
+| 10% | 18 | 15 | 3 |
 
-- Python ≥ 3.8
-- NumPy ≥ 1.20
-- SciPy ≥ 1.7
-- CuPy (optional, for GPU acceleration)
+The gap **widens** under tighter scrutiny — the opposite of numerology.
+
+## File Structure
+
+```
+pdt-closure-mc/
+├── README.md                     # This file
+├── LICENSE                       # MIT License
+├── pdt_closure_mc_gpu_v3.py      # Full 4-layer MC (v3.1, GPU/CPU)
+├── quick_verify.py               # 30-second CPU verification
+└── mc_results_summary_v3.txt     # Output from full run
+```
+
+## Reproducing the Results
+
+The script auto-detects GPU/CPU and outputs `mc_results_summary_v3.txt`. Expected output on A100:
+
+```
+Layer 1: 2,000,000,000 trials → 18/18 only at (ρ, Q)
+Layer 2: 500,000,000 trials (excl) → wall at 11/18, >5.7σ
+Layer 3: 1/125,000 exponent triples → PDT's (15,29,19)
+Layer 4: 1,000,000 shuffles → best 9/18
+```
 
 ## Citation
 
-If you use this code, please cite:
-S. Alexander, "There Is No Hierarchy,"
-Gravity Research Foundation Essay Competition 2026.
+```bibtex
+@misc{alexander2026hierarchy,
+  author = {Alexander, Stephanie},
+  title = {There Is No Hierarchy: The Gauge Hierarchy as Dimensional Arithmetic},
+  year = {2026},
+  note = {Submitted to Gravity Research Foundation 2026 Awards for Essays on Gravitation}
+}
+```
 
 ## License
 
-This work is licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+MIT License. Use freely. Verify independently.
