@@ -1,3 +1,5 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/stalex444/pdt-closure-mc/blob/main/pdt_statistical_tests.ipynb)
+
 # PDT Closure Monte Carlo
 
 **Statistical validation of Pisot Dimensional Theory (PDT)**
