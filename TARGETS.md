@@ -23,9 +23,9 @@ Values are current as of February 2026.
 
 ## Primordial Nucleosynthesis
 
-- **Y_p = 0.2449(40)** (primordial helium mass fraction)
-  - Source: Aver, Olive & Skillman 2021
-  - Reference: JCAP **03**, 027 (2021)
+* Y_p = 0.2458(13) (primordial helium mass fraction)
+   * Source: Aver, Olive & Skillman 2026
+   * Reference: JCAP 02, 014 (2026)
 
 ## Cosmological
 
